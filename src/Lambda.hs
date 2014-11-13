@@ -1,7 +1,7 @@
 module Lambda ( ) where
 
-import Text.Parsec
-import Text.Parsec.String
+import           Text.Parsec
+import           Text.Parsec.String
 
 type Identifier = String
 
@@ -33,4 +33,22 @@ lC = term <|> lambdaExprParser
 --go input = parse (lambdaCalculus input) " "
 test input = parseTest (do expr <- lC; eof; return expr) input
 
-x = "\\y.y(\\x.x)y"
+-- x = "\\y.y(\\x.x)y"
+
+s :: (a -> b -> c) -> (a -> b) -> a -> c
+s f g x = f x (g x)
+
+k :: a -> b -> b
+k x y = y
+
+k1 :: a -> b -> b
+k1 x y = y
+
+i :: a -> a
+i x = x
+
+compose :: (s -> t) -> (t1 -> s) -> t1 -> t
+compose f g x = f $ g x
+
+twice :: (a -> a) -> a -> a
+twice f = f . f
