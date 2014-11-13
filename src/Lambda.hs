@@ -35,6 +35,8 @@ test input = parseTest (do expr <- lC; eof; return expr) input
 
 -- x = "\\y.y(\\x.x)y"
 
+-- SKI Combinator Logic 
+
 s :: (a -> b -> c) -> (a -> b) -> a -> c
 s f g x = f x (g x)
 
