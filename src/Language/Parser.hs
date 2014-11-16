@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Parser where
-
+module Language.Parser
+  ( ) where
 import           Data.Char
 
 type Token = String

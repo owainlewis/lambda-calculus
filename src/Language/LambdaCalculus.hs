@@ -1,6 +1,7 @@
 {-# LANGUAGE FlexibleContexts #-}
-module Lambda
+module Language.LambdaCalculus
   ( Term(..)
+  , parseTerm
   ) where
 
 import           Control.Applicative ((*>), (<*))
@@ -41,33 +42,7 @@ parseFunction = do
     return expr
 
 term :: Parser Term
-term = parseVar <|> parseFunction
+term = parseFunction
 
-identityFunction = "\\x.x"
-test input = parseTest (do expr <- term; eof; return expr) input
-
--- x = "\\y.y(\\x.x)y"
-
--- SKI Combinator Logic
-
-s :: (a -> b -> c) -> (a -> b) -> a -> c
-s f g x = f x (g x)
-
-k :: a -> b -> b
-k x y = y
-
-k1 :: a -> b -> b
-k1 x y = y
-
-i :: a -> a
-i x = x
-
--- The fixed point Y combinator
-y :: ((a -> a) -> (a -> a)) -> (a -> a)
-y f = f (y f)
-
-compose :: (s -> t) -> (t1 -> s) -> t1 -> t
-compose f g x = f $ g x
-
-twice :: (a -> a) -> a -> a
-twice f = f . f
+parseTerm :: String -> Either ParseError Term
+parseTerm input = parse term " " input
