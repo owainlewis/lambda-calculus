@@ -13,7 +13,7 @@ extra-source-files:  README.md
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     Lambda
+  exposed-modules:     Main
   build-depends:
       base >=4.7 && <4.8,
       parsec

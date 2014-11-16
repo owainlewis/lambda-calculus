@@ -3,6 +3,7 @@ module Main where
 import           Data.Monoid
 import           Language.LambdaCalculus
 
+maybeFromEither :: Either x y -> Maybe y
 maybeFromEither (Left _)  = Nothing
 maybeFromEither (Right x) = Just x
 
