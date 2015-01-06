@@ -63,14 +63,10 @@ natural :: Parser Integer
 natural = Tok.natural lexer
 
 variable :: Parser Expr
-variable = do
-  x <- identifier
-  return (Var x)
+variable = identifier >>= (return . Var)
 
 number :: Parser Expr
-number = do
-  n <- natural
-  return (Lit (LInt (fromIntegral n)))
+number = natural >>= return . (\x -> (Lit (LInt (fromIntegral x))))
 
 lambda :: Parser Expr
 lambda = do
@@ -90,6 +86,10 @@ expr :: Parser Expr
 expr = do
   es <- many1 term
   return (foldl1 App es)
+
+-- Utility function for testing a single parser
+doParse :: Parser a -> String -> Either ParseError a
+doParse p input = parse p "=>" input
 
 -- parseExpr "(λx.x)"
 parseExpr :: String -> Either ParseError Expr
