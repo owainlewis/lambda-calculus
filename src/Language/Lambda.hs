@@ -8,7 +8,7 @@ module Lambda
 
 import           Data.Char
 import           Text.Parsec
-import           Text.Parsec.Language (haskellStyle)
+import           Text.Parsec.Language (emptyDef)
 import           Text.Parsec.String   (Parser)
 
 import qualified Text.Parsec.Expr     as Ex
@@ -34,9 +34,9 @@ lexer :: Tok.TokenParser ()
 lexer = Tok.makeTokenParser style
   where ops   = ["λ"]
         names = []
-        style = haskellStyle {Tok.reservedOpNames = ops,
-                              Tok.reservedNames   = names,
-                              Tok.commentLine     = "#"}
+        style = emptyDef {Tok.reservedOpNames = ops,
+                          Tok.reservedNames   = names,
+                          Tok.commentLine     = "#"}
 
 data Lambda = Lambda
 
