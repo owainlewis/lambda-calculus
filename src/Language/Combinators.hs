@@ -1,5 +1,9 @@
 module Language.Combinators
-  ( ) where
+  ( sCombinator
+  , kCombinator
+  , iCombinator
+  , yCombinator
+  ) where
 
 -- SKI Combinator Logic
 
