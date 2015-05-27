@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+
 module Language.Parser
   ( AST(..)
   , isWhiteSpace
