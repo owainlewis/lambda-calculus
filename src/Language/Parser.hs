@@ -1,6 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Language.Parser
-  ( ) where
+  ( AST(..)
+  , isWhiteSpace
+  , lexer) where
+  
 import           Data.Char
 
 type Token = String
