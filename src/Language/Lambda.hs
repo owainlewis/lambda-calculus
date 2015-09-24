@@ -1,20 +1,17 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- A parser for Lambda Calculus
-
 module Lambda
   ( Expr(..)
-  , Lit(..)) where
+  , Lit(..)
+  ) where
 
 import           Data.Char
 import           Text.Parsec
 import           Text.Parsec.Language (emptyDef)
 import           Text.Parsec.String   (Parser)
-
 import qualified Text.Parsec.Expr     as Ex
 import qualified Text.Parsec.Token    as Tok
-
--- Types
 
 type Name = String
 
