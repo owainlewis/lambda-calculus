@@ -3,7 +3,8 @@
 module Language.Parser
   ( AST(..)
   , isWhiteSpace
-  , lexer) where
+  , lexer
+  ) where
   
 import           Data.Char
 
