@@ -1,6 +1,7 @@
 module Language.Interpreter
   (  Term(..)
-   , Env(..) ) where
+   , Env(..) 
+  ) where
 
 import           Control.Monad.Reader
 import           Data.Monoid          ((<>))
@@ -8,9 +9,7 @@ import           Data.Monoid          ((<>))
 data Term = Apply Term Term | Lambda String Term | Var String deriving (Show)
 
 newtype Env = Env ([(String,Closure)])
-
 type Closure = (Term,Env)
-
 data Value = Lam String Closure | Failure String
 
 instance Show Value where
