@@ -14,6 +14,8 @@ Annonymous functions (λ v . e)
 
 The identity functions (λ x . x)
 
+The expression lx.E would be written (lambda (x) E) in Scheme.  The application operator binds tighter than abstraction operator, so lx.lx.xy should be read as lx.(lx.(xy)).
+
 # Substitution 
 
 Computation in the lambda calculus takes place by substitution.  There are two main rules:
