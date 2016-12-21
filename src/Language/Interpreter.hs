@@ -6,22 +6,27 @@ module Language.Interpreter
 import           Control.Monad.Reader
 import           Data.Monoid          ((<>))
 
-data Term = Apply Term Term | Lambda String Term | Var String deriving (Show)
+data Term = Apply Term Term 
+          | Lambda String Term 
+          | Var String deriving (Show)
 
 newtype Env = Env ([(String,Closure)])
+
 type Closure = (Term,Env)
-data Value = Lam String Closure | Failure String
+
+data Value = Lam String Closure 
+           | Failure String
 
 instance Show Value where
   show (Lam x (term, _)) = x <> show term
   show (Failure f) = show f
 
 interp' :: Term -> Reader Env Value
---when we have lambda term, we can just return it
+-- when we have lambda term, we can just return it
 interp' (Lambda nv t)
    = do env <- ask
         return $ Lam nv (t,env)
---when we run into a value we look it up in the environment
+-- when we run into a value we look it up in the environment
 interp' (Var v)
    = do (Env env) <- ask
         case lookup (show v) env of
